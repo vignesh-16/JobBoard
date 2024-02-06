@@ -1,0 +1,13 @@
+body {
+    display: flex;
+    margin: auto;
+    height: 100vh
+}
+
+.disabled {
+    display: none;
+}
+
+.home-page-container {
+    margin: auto;
+}

@@ -5,23 +5,24 @@
 <html>
 <head>
     <title>Welcome</title>
-    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="../styles/siginin.css">
+    <script src="../JS/signin.js"></script>
 </head>
 <body>
     <div class="home-page-container">
         <div class="log-in-section">
             <div class="username-email-container">
-                <label>User Id:</label>
-                <input type="text" placeholder="username or email address">
+                <input type="text" name="userid" placeholder="username or email address">
             </div>
             <div class="password-container">
-                <label>Password:</label>
-                <input type="password" placeholder="enter your password">
+                <input type="password" name="userpass" placeholder="enter your password">
             </div>
-            <button class="js-sign-in">Log in</button>
-            <button class="js-forgot-password">Forgot password?</button>
+            <div class="start-log-in">
+                <button class="js-log-in">Log in</button>
+                <button class="js-forgot-password">Forgot password?</button>
+            </div>
         </div>
-        <div class="sign-up-section">
+        <div class="sign-up-section disabled">
             <div class="new-user-firstname">
                 <label>First name:</label>
                 <input type="text" placeholder="enter first name">
