@@ -1,5 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
-    var signInButton = document.getElementsByClassName("js-log-in")[0];
+    
+    const signInSection = document.getElementsByClassName("log-in-section")[0];
+    const signUpSection = document.getElementsByClassName("sign-up-section")[0];
+    const signInButton = document.getElementsByClassName("js-log-in")[0];
+    const signUpButton = document.getElementsByClassName("js-sign-up")[0];
+   
 
     signInButton.addEventListener("click", function() {
         let userId = document.getElementsByName("userid")[0].value
@@ -15,30 +20,15 @@ document.addEventListener("DOMContentLoaded", function() {
         xhr.send(JSON.stringify(data));
         xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
-            // Request was successful
-            console.log(xhr.responseText);
-        }
+                // Request was successful
+                console.log(xhr.responseText);
+            }
         };
-
-        // fetch("/signin", {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({data: data})
-        // })
-        // .then(response => {
-        //     if (!response.ok) {
-        //         throw new Error("Network response was not ok");
-        //     }
-        //     return response.json();
-        // })
-        // .then(data => {
-        //     console.log(data);
-        //     // Handle the response data as needed
-        // })
-        // .catch(error => {
-        //     console.error("There was a problem with your fetch operation:", error);
-        // });
     });
+
+    signUpButton.addEventListener("click", ()=> {
+        signInSection.classList.add("disabled");
+        signUpSection.classList.remove("disabled");
+    })
+
 });

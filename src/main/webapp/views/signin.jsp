@@ -21,29 +21,34 @@
                 <button class="js-log-in">Log in</button>
                 <button class="js-forgot-password">Forgot password?</button>
             </div>
+            <div class="sign-up-other-login-options space">
+                <button class="js-sign-up">Sign Up</button>
+            </div>
         </div>
         <div class="sign-up-section disabled">
-            <div class="new-user-firstname">
+            <div class="new-user-firstname space">
                 <label>First name:</label>
                 <input type="text" placeholder="enter first name">
             </div>
-            <div class="new-user-lastname">
+            <div class="new-user-lastname space">
                 <label>Last name:</label>
                 <input type="text" placeholder="enter last/family name">
             </div>
-            <div class="new-user-email">
+            <div class="new-user-email space">
                 <label>Email address:</label> 
                 <input type="email" placeholder="your email address">
             </div>
-            <div class="new-user-password pass-one">
-                <label>Create a password:</label>
-                <input type="password">
+            <div class="new-user-password pass-one space">
+                <label>Choose a password:</label>
+                <input type="password" placeholder="choose a password">
             </div>
-            <div class="new-user-password pass-two">
+            <div class="new-user-password pass-two space">
                 <label>Confirm password:</label>
-                <input type="password">
+                <input type="password" placeholder="confirm your password">
             </div>
-            <button class="js-sign-up">Sign up</button>
+            <div class="create-new-user space">
+                <button class="js-create-account">Create Account</button>
+            </div>
         </div>
     </div>
 </body>

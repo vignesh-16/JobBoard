@@ -11,3 +11,8 @@ body {
 .landing-page-container {
     margin: auto;
 }
+
+.space {
+    display: flex;
+    justify-content: space-between;
+}
