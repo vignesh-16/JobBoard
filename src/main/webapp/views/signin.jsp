@@ -9,7 +9,7 @@
     <script src="../JS/signin.js"></script>
 </head>
 <body>
-    <div class="home-page-container">
+    <div class="landing-page-container">
         <div class="log-in-section">
             <div class="username-email-container">
                 <input type="text" name="userid" placeholder="username or email address">
