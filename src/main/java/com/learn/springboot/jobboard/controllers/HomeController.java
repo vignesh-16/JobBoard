@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.learn.springboot.jobboard.params.SigninParams;
 import com.learn.springboot.jobboard.repository.UserAuthenticateRepo;
 import com.learn.springboot.jobboard.schema.UserAuthenticate;
-import com.learn.springboot.jobboard.services.UserService;
 
 import java.util.logging.Logger;
 
@@ -19,16 +18,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RestController
 public class HomeController {
 
-    private UserService userService;
     Logger logger = Logger.getLogger(getClass().getName());
     
     @Autowired
     UserAuthenticateRepo credentials;
-
-    @Autowired
-    public HomeController (UserService userService) {
-        this.userService = userService;
-    }
 
     @RequestMapping("/")
     public ModelAndView welcomePage() {
@@ -36,8 +29,11 @@ public class HomeController {
     }
     @PostMapping("/signin")
     public ModelAndView signUserIn(@RequestBody SigninParams user) {
-        UserAuthenticate currentUser = userService.findByUserId(user.getUsername());
-        logger.info(currentUser.toString());
+        String userId = user.getUsername();
+        UserAuthenticate currentUser = credentials.findByUserId(userId);
+        if(currentUser.getPassword().equals(user.getPassword())) {
+            logger.info("user authentication matches!!!");
+        }
         return new ModelAndView("home");
     }
     

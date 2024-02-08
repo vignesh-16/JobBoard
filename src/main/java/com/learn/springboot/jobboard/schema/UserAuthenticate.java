@@ -1,14 +1,18 @@
 package com.learn.springboot.jobboard.schema;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.annotation.Id;
 
 @Document(collection = "UserCredentials")
 public class UserAuthenticate {
     @Id
     private String id;
+    @Field("userId")
     private String userId;
+    @Field("password")
     private String password;
+    @Field("accountType")
     private String accountType;
     public String getId() {
         return id;

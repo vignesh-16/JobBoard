@@ -8,5 +8,6 @@ import com.learn.springboot.jobboard.schema.UserAuthenticate;
 @Service
 public interface UserAuthenticateRepo extends MongoRepository<UserAuthenticate, String> {
 
-    UserAuthenticate findByUserId(String userId);
+    UserAuthenticate findByUserId(String userId); 
+
 }
