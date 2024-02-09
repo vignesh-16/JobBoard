@@ -28,23 +28,32 @@
         <div class="sign-up-section disabled">
             <div class="new-user-firstname space">
                 <label>First name:</label>
-                <input type="text" placeholder="enter first name">
+                <input type="text" name="fname" placeholder="enter first name">
             </div>
             <div class="new-user-lastname space">
                 <label>Last name:</label>
-                <input type="text" placeholder="enter last/family name">
+                <input type="text" name="lname" placeholder="enter last/family name">
             </div>
             <div class="new-user-email space">
                 <label>Email address:</label> 
-                <input type="email" placeholder="your email address">
+                <input type="email" name="mail" placeholder="your email address">
+            </div>
+            <div class="user-account-type space">
+                <label>Account type:</label> 
+                <select name="account-type">
+                    <optgroup label="Select your account type">
+                        <option value="recruiter">Recruiter</option>
+                        <option value="candidate">Candidate</option>
+                    </optgroup>
+                </select>
             </div>
             <div class="new-user-password pass-one space">
                 <label>Choose a password:</label>
-                <input type="password" placeholder="choose a password">
+                <input type="password" name="password1" placeholder="choose a password">
             </div>
             <div class="new-user-password pass-two space">
                 <label>Confirm password:</label>
-                <input type="password" placeholder="confirm your password">
+                <input type="password" name="password2" placeholder="confirm your password">
             </div>
             <div class="create-new-user space">
                 <button class="js-create-account">Create Account</button>
