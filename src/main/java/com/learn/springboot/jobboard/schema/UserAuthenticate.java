@@ -10,6 +10,8 @@ public class UserAuthenticate {
     private String id;
     @Field("userId")
     private String userId;
+    @Field("userLogIn")
+    private String userLogin;
     @Field("password")
     private String password;
     @Field("accountType")
@@ -26,6 +28,12 @@ public class UserAuthenticate {
     public void setUserId(String userId) {
         this.userId = userId;
     }
+    public String getUserLogin() {
+        return userLogin;
+    }
+    public void setUserLogin(String userLogin) {
+        this.userLogin = userLogin;
+    }
     public String getPassword() {
         return password;
     }
@@ -40,6 +48,6 @@ public class UserAuthenticate {
     }
     @Override
     public String toString() {
-        return "accountDetails{id=" + id + ", userId=" + userId + ", password=" + password + ", accountType="+ accountType + "}";
+        return "UserAuthenticate{id=" + id + ", userId=" + userId + ", userLogin=" + userLogin + ", password="+ password + ", accountType=" + accountType + "}";
     }
 }
