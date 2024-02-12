@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -29,7 +30,7 @@ public class UsersController {
     IdGeneratorService createUserId;
     
     @PostMapping("/createuser")
-    public void postMethodName(@RequestBody User newUser, @RequestBody UserAuthenticate userCreds) {
+    public void postMethodName(@RequestParam(name="user") User newUser, @RequestParam(name = "credentials") UserAuthenticate userCreds) {
         logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> request received to the end point!! "+newUser.toString()+" : "+userCreds.toString());
         String userId = createUserId.generateUniqueId();
         String credsId = createUserId.generateUniqueId();

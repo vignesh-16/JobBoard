@@ -38,21 +38,18 @@ document.addEventListener("DOMContentLoaded", function() {
         let email = document.getElementsByName("mail")[0].value;
         let accountType = document.getElementsByName("account-type")[0].value;
         let password = document.getElementsByName("password2")[0].value;
-        let user = {
-            firstname : firstname,
-            lastname : lastname,
-            email : email,
-            accountType : accountType 
-        }
+        let user = { firstname : firstname, lastname : lastname, email : email, accountType : accountType };
+        let credentials = { userLogin : email, password : password, accountType : accountType };
         const ajax = new XMLHttpRequest();
         ajax.open("POST", "/createuser", true);
         ajax.setRequestHeader("Content-Type", "application/json");
-        ajax.send(JSON.stringify(user));
+        //ajax.send(user = user, credentials = creds);
+        ajax.send(JSON.stringify({user : user, credentials : credentials}))
         ajax.onreadystatechange = ()=> {
             if(ajax.readyState === 4 && ajax.status === 200) {
                 console.log(` >>>>>>>>> Request success: ${ajax.responseText}`)
             } else {
-                console.error(` !!!!!!!!!!!!!!!!!!!!! Request failed: ${ajax.responseText}${ajax.status}`)
+                console.error(`Request failed: ${ajax.responseText}${ajax.status}!!!`)
             }
         }
         console.log(` >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ${JSON.stringify(user)} and password: ${password}`)
