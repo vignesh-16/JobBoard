@@ -48,6 +48,7 @@ public class UserAuthenticate {
     }
     @Override
     public String toString() {
-        return "UserAuthenticate{id=" + id + ", userId=" + userId + ", userLogin=" + userLogin + ", password="+ password + ", accountType=" + accountType + "}";
+        return "UserAuthenticate [id=" + id + ", userId=" + userId + ", userLogin=" + userLogin + ", password="
+                + password + ", accountType=" + accountType + "]";
     }
 }

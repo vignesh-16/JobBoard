@@ -5,5 +5,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.learn.springboot.jobboard.schema.User;
 
 public interface UserRepo  extends MongoRepository<User, String> {
-    
+    User findByEmail(String email);
 }

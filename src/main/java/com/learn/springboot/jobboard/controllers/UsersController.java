@@ -1,6 +1,7 @@
 package com.learn.springboot.jobboard.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.learn.springboot.jobboard.repository.UserAuthenticateRepo;
 import com.learn.springboot.jobboard.repository.UserRepo;
@@ -11,6 +12,7 @@ import com.learn.springboot.jobboard.services.IdGeneratorService;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,11 +29,11 @@ public class UsersController {
     @Autowired
     UserAuthenticateRepo credsRepo;
 
+    @Autowired
     IdGeneratorService createUserId;
     
     @PostMapping("/createuser")
-    public void postMethodName(@RequestParam(name="user") User newUser, @RequestParam(name = "credentials") UserAuthenticate userCreds) {
-        logger.info(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> request received to the end point!! "+newUser.toString()+" : "+userCreds.toString());
+    public void createUserAndCredentials(@RequestBody User newUser, @RequestBody UserAuthenticate userCreds) {
         String userId = createUserId.generateUniqueId();
         String credsId = createUserId.generateUniqueId();
         newUser.setId(userId);
@@ -40,5 +42,24 @@ public class UsersController {
         userCreds.setUserId(userId);
         credsRepo.save(userCreds);
     }
+
+    @PostMapping("/CreateUser")
+    public String createUser (@RequestBody User newUser) {
+        User existing = repo.findByEmail(newUser.getEmail());
+        if(existing != null) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
+        } else {
+            String userId = createUserId.generateUniqueId();
+            newUser.setId(userId);
+            repo.save(newUser);
+            return userId;
+        }
+    }
+
+    @PostMapping("path")
+    public void createUserCredentials (@RequestBody String entity) {
+
+    }
+    
     
 }

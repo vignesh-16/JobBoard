@@ -38,21 +38,47 @@ document.addEventListener("DOMContentLoaded", function() {
         let email = document.getElementsByName("mail")[0].value;
         let accountType = document.getElementsByName("account-type")[0].value;
         let password = document.getElementsByName("password2")[0].value;
-        let user = { firstname : firstname, lastname : lastname, email : email, accountType : accountType };
-        let credentials = { userLogin : email, password : password, accountType : accountType };
-        const ajax = new XMLHttpRequest();
-        ajax.open("POST", "/createuser", true);
-        ajax.setRequestHeader("Content-Type", "application/json");
-        //ajax.send(user = user, credentials = creds);
-        ajax.send(JSON.stringify({user : user, credentials : credentials}))
-        ajax.onreadystatechange = ()=> {
-            if(ajax.readyState === 4 && ajax.status === 200) {
-                console.log(` >>>>>>>>> Request success: ${ajax.responseText}`)
-            } else {
-                console.error(`Request failed: ${ajax.responseText}${ajax.status}!!!`)
-            }
+        let newUser = { id: "", firstname : firstname, lastname : lastname, email : email, accountType : accountType };
+        let userCreds = { id: "", userId: "", userLogin : email, password : password, accountType : accountType };
+        let instance = Date.now();
+
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(newUser)
         }
-        console.log(` >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ${JSON.stringify(user)} and password: ${password}`)
+
+        fetch('/CreateUser', options)
+        .then(response => {
+            console.info(` >> Request response: ${JSON.stringify(response)}`)
+            if(response.ok) {
+                
+                console.info(` >>> User Created Successfully!`)
+            } else {
+                console.info(` >> There was some error while creating new user`)
+            }
+        })
+        .catch(err => {
+            console.error(` >> User creation failed: ${JSON.stringify(err)}`)
+        })
+        console.log(` >> This is single param: ${instance} & ${JSON.stringify(options)}`)
+
+        // Constructing the request body
+        // const requestBody = {
+        //   'newUser': newUser,
+        //   'userCreds': userCreds
+        // };
+        
+        //
+        // // Making the POST request
+        // fetch('/createuser', options)
+        //     .then(response => {
+        //         console.info(`Server response: ${JSON.stringify(response)}`)
+        //     })
+        //     .catch(err => {
+        //         console.error(` >> Create user request failed: ${JSON.stringify(err)}`)
+        //     })
+
         signInSection.classList.remove("disabled");
         signUpSection.classList.add("disabled");
     })
