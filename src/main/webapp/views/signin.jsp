@@ -6,6 +6,7 @@
 <head>
     <title>Welcome</title>
     <link rel="stylesheet" href="../styles/siginin.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../JS/signin.js"></script>
 </head>
 <body>
