@@ -12,6 +12,41 @@ $(window).on('beforeunload', function() {
     });
 });
 
+/**
+ * @param {String} requestTo takes the end point which the request should be made.
+ * @param {String} method takes the method type 'POST', 'GET', etc.,
+ * @param {Object} body takes the parameter object required. 
+ * @param {String} purpose (Optional) a brief message indicating what needs to achieved by the request.
+ */
+function requestToEndPoint (requestTo, method, body, purpose) {
+    const endPoint = requestTo;
+    const options = {
+        method : method,
+        headers : { 'Content-Type' : 'application/json' },
+        body : JSON.stringify(body)
+    }
+    const task = purpose != null || undefined ? purpose : `${method} call :`
+    fetch(endPoint, options)
+        .then(response => {
+            console.info(` >> Request response: ${JSON.stringify(response)}`)
+            if(response.ok) {
+                console.log(` >> Response: ${JSON.stringify(response)}`)
+                console.info(` >>> ${task} completed Successfully!`)
+                return true;
+            } else {
+                console.error(` >> There was some error during ${task}`)
+                return false;
+            }
+        })
+        .then(data => {
+            console.log(` > Response data received after ${task}: ${JSON.stringify(data)}`)
+        })
+        .catch(err => {
+            console.error(` >> Not able to execute ${task} -> ${JSON.stringify(err)}`)
+            return false;
+        })
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     
     const signInSection = document.getElementsByClassName("log-in-section")[0];
@@ -54,28 +89,29 @@ document.addEventListener("DOMContentLoaded", function() {
         let password = document.getElementsByName("password2")[0].value;
         let newUser = { id: "", firstname : firstname, lastname : lastname, email : email, accountType : accountType };
         let userCreds = { id: "", userId: "", userLogin : email, password : password, accountType : accountType };
-        let instance = Date.now();
+        
+        let userSaved = requestToEndPoint("/CreateUser", "POST", newUser, "Create a new user")
 
-        const options = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(newUser)
-        }
+        // const options = {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(newUser)
+        // }
 
-        fetch('/CreateUser', options)
-        .then(response => {
-            console.info(` >> Request response: ${JSON.stringify(response)}`)
-            if(response.ok) {
+        // fetch('/CreateUser', options)
+        // .then(response => {
+        //     console.info(` >> Request response: ${JSON.stringify(response)}`)
+        //     if(response.ok) {
                 
-                console.info(` >>> User Created Successfully!`)
-            } else {
-                console.info(` >> There was some error while creating new user`)
-            }
-        })
-        .catch(err => {
-            console.error(` >> User creation failed: ${JSON.stringify(err)}`)
-        })
-        console.log(` >> This is single param: ${instance} & ${JSON.stringify(options)}`)
+        //         console.info(` >>> User Created Successfully!`)
+        //     } else {
+        //         console.info(` >> There was some error while creating new user`)
+        //     }
+        // })
+        // .catch(err => {
+        //     console.error(` >> User creation failed: ${JSON.stringify(err)}`)
+        // })
+        // console.log(` >> This is single param: ${instance} & ${JSON.stringify(options)}`)
 
         // Constructing the request body
         // const requestBody = {

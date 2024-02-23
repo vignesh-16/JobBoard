@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -43,7 +44,7 @@ public class UsersController {
     }
 
     @PostMapping("/CreateUser")
-    public String createUser (@RequestBody User newUser) {
+    public ResponseEntity<String> createUser (@RequestBody User newUser) {
         User existing = repo.findByEmail(newUser.getEmail());
         if(existing != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
@@ -51,12 +52,12 @@ public class UsersController {
             String userId = createUserId.generateUniqueId();
             newUser.setId(userId);
             repo.save(newUser);
-            return userId;
+            return ResponseEntity.ok(userId);
         }
     }
 
-    @PostMapping("path")
-    public void createUserCredentials (@RequestBody String entity) {
+    @PostMapping("/SaveUserCredentials")
+    public void createOrSaveUserCredentials (@RequestBody String entity) {
 
     }
     

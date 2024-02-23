@@ -31,7 +31,7 @@ public class HomeController {
     public ModelAndView signUserIn(@RequestBody SigninParams user) {
         String userId = user.getUsername();
         UserAuthenticate currentUser = credentials.findByUserId(userId);
-        if(currentUser.getPassword().equals(user.getPassword())) {
+        if(currentUser != null && currentUser.getPassword().equals(user.getPassword())) {
             logger.info("user authentication matches!!!");
         }
         return new ModelAndView("home");

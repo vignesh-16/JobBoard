@@ -1,6 +1,6 @@
 package com.learn.springboot.jobboard.controllers;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,8 +10,6 @@ import java.util.logging.Logger;
 public class SessionController {
 
     Logger logger = Logger.getLogger(getClass().getName());
-
-    private HttpServletRequest request;
 
     @PostMapping("/TerminateSession")
     public void invalidateSession(HttpServletRequest request) {
