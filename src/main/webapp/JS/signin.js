@@ -26,25 +26,23 @@ function requestToEndPoint (requestTo, method, body, purpose) {
         body : JSON.stringify(body)
     }
     const task = purpose != null || undefined ? purpose : `${method} call :`
+    let serverResponse = {};
     fetch(endPoint, options)
         .then(response => {
-            console.info(` >> Request response: ${JSON.stringify(response)}`)
             if(response.ok) {
-                console.log(` >> Response: ${JSON.stringify(response)}`)
-                console.info(` >>> ${task} completed Successfully!`)
-                return true;
+            return response.json(); // Parse response body as JSON
             } else {
-                console.error(` >> There was some error during ${task}`)
-                return false;
+            console.error(` >> There was some error during ${task}`);
             }
         })
         .then(data => {
-            console.log(` > Response data received after ${task}: ${JSON.stringify(data)}`)
+            serverResponse.result = Object.assign(data);
         })
         .catch(err => {
-            console.error(` >> Not able to execute ${task} -> ${JSON.stringify(err)}`)
+            console.error(` >> Not able to execute ${task} -> ${err}`)
             return false;
-        })
+        });
+    return serverResponse
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -63,17 +61,10 @@ document.addEventListener("DOMContentLoaded", function() {
             username: userId,
             password: userPwd
         }
-        console.log(` >> credentials received for: ${userId}:${userPwd} and send it as ${JSON.stringify(data)}`)
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "/signin", true);
-        xhr.setRequestHeader("Content-Type", "application/json");
-        xhr.send(JSON.stringify(data));
-        xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-                // Request was successful
-                console.log(xhr.responseText);
-            }
-        };
+        let response = requestToEndPoint("/signin", "POST", data, "Check user credentials")
+        if (response?.result?.statusCode == 401) {
+            alert(`There was some error, please try again`)
+        }
     });
 
     signUpButton.addEventListener("click", ()=> {
@@ -90,47 +81,21 @@ document.addEventListener("DOMContentLoaded", function() {
         let newUser = { id: "", firstname : firstname, lastname : lastname, email : email, accountType : accountType };
         let userCreds = { id: "", userId: "", userLogin : email, password : password, accountType : accountType };
         
-        let userSaved = requestToEndPoint("/CreateUser", "POST", newUser, "Create a new user")
-
-        // const options = {
-        //     method: 'POST',
-        //     headers: { 'Content-Type': 'application/json' },
-        //     body: JSON.stringify(newUser)
-        // }
-
-        // fetch('/CreateUser', options)
-        // .then(response => {
-        //     console.info(` >> Request response: ${JSON.stringify(response)}`)
-        //     if(response.ok) {
-                
-        //         console.info(` >>> User Created Successfully!`)
-        //     } else {
-        //         console.info(` >> There was some error while creating new user`)
-        //     }
-        // })
-        // .catch(err => {
-        //     console.error(` >> User creation failed: ${JSON.stringify(err)}`)
-        // })
-        // console.log(` >> This is single param: ${instance} & ${JSON.stringify(options)}`)
-
-        // Constructing the request body
-        // const requestBody = {
-        //   'newUser': newUser,
-        //   'userCreds': userCreds
-        // };
+        let response = requestToEndPoint("/CreateUser", "POST", newUser, "Create a new user")
         
-        //
-        // // Making the POST request
-        // fetch('/createuser', options)
-        //     .then(response => {
-        //         console.info(`Server response: ${JSON.stringify(response)}`)
-        //     })
-        //     .catch(err => {
-        //         console.error(` >> Create user request failed: ${JSON.stringify(err)}`)
-        //     })
-
-        signInSection.classList.remove("disabled");
-        signUpSection.classList.add("disabled");
+        if(response?.result?.statusCode == 200) {
+            userCreds.userId = response?.result?.data
+            let response2 = requestToEndPoint("SaveUserCredentials", 'POST', userCreds, "Generate user credentials to login")
+            if (response2?.result.statusCode == 200 ) {
+                alert (`Your user account was created successfully!, please log in.`)
+                signInSection.classList.remove("disabled");
+                signUpSection.classList.add("disabled");
+            } else {
+                alert (`Something went wrong`)
+            }
+        } else {
+            alert(`Something went wrong`)
+        }
     })
 
 });

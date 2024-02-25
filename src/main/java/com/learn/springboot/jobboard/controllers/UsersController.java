@@ -1,8 +1,8 @@
 package com.learn.springboot.jobboard.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
+import com.learn.springboot.jobboard.params.ServerResponse;
 import com.learn.springboot.jobboard.repository.UserAuthenticateRepo;
 import com.learn.springboot.jobboard.repository.UserRepo;
 import com.learn.springboot.jobboard.schema.User;
@@ -12,8 +12,6 @@ import com.learn.springboot.jobboard.services.IdGeneratorService;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -44,21 +42,24 @@ public class UsersController {
     }
 
     @PostMapping("/CreateUser")
-    public ResponseEntity<String> createUser (@RequestBody User newUser) {
+    public ServerResponse createUser (@RequestBody User newUser) {
         User existing = repo.findByEmail(newUser.getEmail());
         if(existing != null) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "User already exists");
+            return new ServerResponse(409, "User with same email already exists");
         } else {
             String userId = createUserId.generateUniqueId();
             newUser.setId(userId);
             repo.save(newUser);
-            return ResponseEntity.ok(userId);
+            return new ServerResponse(200, "User created successfully!!!", userId);
         }
     }
 
     @PostMapping("/SaveUserCredentials")
-    public void createOrSaveUserCredentials (@RequestBody String entity) {
-
+    public ServerResponse createOrSaveUserCredentials (@RequestBody UserAuthenticate userCreds) {
+        String credsId = createUserId.generateUniqueId();
+        userCreds.setId(credsId);
+        credsRepo.save(userCreds);
+        return new ServerResponse(200, "User credentials generated successfully!");
     }
     
     

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.learn.springboot.jobboard.params.ServerResponse;
 import com.learn.springboot.jobboard.params.SigninParams;
 import com.learn.springboot.jobboard.repository.UserAuthenticateRepo;
 import com.learn.springboot.jobboard.schema.UserAuthenticate;
@@ -28,13 +29,23 @@ public class HomeController {
         return new ModelAndView("signin");
     }
     @PostMapping("/signin")
-    public ModelAndView signUserIn(@RequestBody SigninParams user) {
-        String userId = user.getUsername();
-        UserAuthenticate currentUser = credentials.findByUserId(userId);
-        if(currentUser != null && currentUser.getPassword().equals(user.getPassword())) {
-            logger.info("user authentication matches!!!");
+    public ServerResponse signUserIn(@RequestBody SigninParams user) {
+        logger.info("Sign in request recieved for login id: "+user.getUsername());
+        String logInId = user.getUsername();
+        UserAuthenticate currentUser = credentials.findByUserLogin(logInId);
+        logger.info("request param as : "+user.getPassword().getClass());
+        if(currentUser!=null && currentUser.getPassword().equals(user.getPassword())) {
+            logger.info("user credentials matches!!!");
+            showHomePage();
+            return new ServerResponse(200, "User authentication passed");
+        } else {
+            logger.info("user credentials does not match");
+            return new ServerResponse(401, "User authentication failed");
         }
-        return new ModelAndView("home");
     }
     
+    public ModelAndView showHomePage() {
+        logger.info("Directing to home page");
+        return new ModelAndView("home");
+    }
 }
