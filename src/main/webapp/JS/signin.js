@@ -64,6 +64,8 @@ document.addEventListener("DOMContentLoaded", function() {
         let response = requestToEndPoint("/signin", "POST", data, "Check user credentials")
         if (response?.result?.statusCode == 401) {
             alert(`There was some error, please try again`)
+        } else {
+            document.body.innerHTML = JSON.stringify(response?.result?.view);
         }
     });
 

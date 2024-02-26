@@ -36,16 +36,10 @@ public class HomeController {
         logger.info("request param as : "+user.getPassword().getClass());
         if(currentUser!=null && currentUser.getPassword().equals(user.getPassword())) {
             logger.info("user credentials matches!!!");
-            showHomePage();
-            return new ServerResponse(200, "User authentication passed");
+            return new ServerResponse(200, "User authentication passed", new ModelAndView("home"));
         } else {
             logger.info("user credentials does not match");
             return new ServerResponse(401, "User authentication failed");
         }
-    }
-    
-    public ModelAndView showHomePage() {
-        logger.info("Directing to home page");
-        return new ModelAndView("home");
     }
 }
