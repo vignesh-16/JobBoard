@@ -25,7 +25,7 @@ function requestToEndPoint (requestTo, method, body, purpose) {
         headers : { 'Content-Type' : 'application/json' },
         body : JSON.stringify(body)
     }
-    const task = purpose != null || undefined ? purpose : `${method} call :`
+    const task = purpose != null || undefined ? purpose : `${method} call :`;
     let serverResponse = {};
     fetch(endPoint, options)
         .then(response => {
@@ -45,6 +45,27 @@ function requestToEndPoint (requestTo, method, body, purpose) {
     return serverResponse
 }
 
+function requestPage (requestTo, method, body, purpose) {
+    const endPoint = requestTo;
+    const options = {
+        method : method,
+        headers : { 'Content-Type' : 'application/json' },
+        body : JSON.stringify(body)
+    }
+    const task = purpose != null || undefined ? purpose : `${method} call :`;
+    fetch(endPoint, options)
+        .then(response => {
+            if(response.ok) {
+                return response.json();
+            }
+        })
+        .then(data => {
+            console.log(` >> Server response received: ${JSON.stringify(data)}`);
+            let loadPage = data.view.viewName;
+            window.location.href = loadPage;
+        })
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     
     const signInSection = document.getElementsByClassName("log-in-section")[0];
@@ -61,12 +82,7 @@ document.addEventListener("DOMContentLoaded", function() {
             username: userId,
             password: userPwd
         }
-        let response = requestToEndPoint("/signin", "POST", data, "Check user credentials")
-        if (response?.result?.statusCode == 401) {
-            alert(`There was some error, please try again`)
-        } else {
-            document.body.innerHTML = JSON.stringify(response?.result?.view);
-        }
+        requestPage("/signin", "POST", data, "Check user credentials")
     });
 
     signUpButton.addEventListener("click", ()=> {

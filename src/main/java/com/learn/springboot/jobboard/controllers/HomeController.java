@@ -14,6 +14,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -42,4 +45,10 @@ public class HomeController {
             return new ServerResponse(401, "User authentication failed");
         }
     }
+
+    @GetMapping("/home")
+    public ModelAndView getHomePage() {
+        return new ModelAndView("home");
+    }
+    
 }
