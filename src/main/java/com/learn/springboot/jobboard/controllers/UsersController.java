@@ -9,6 +9,8 @@ import com.learn.springboot.jobboard.schema.User;
 import com.learn.springboot.jobboard.schema.UserAuthenticate;
 import com.learn.springboot.jobboard.services.IdGeneratorService;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +50,9 @@ public class UsersController {
             return new ServerResponse(409, "User with same email already exists");
         } else {
             String userId = createUserId.generateUniqueId();
+            String date = getDate();
             newUser.setId(userId);
+            newUser.setCreatedAt(date);
             repo.save(newUser);
             return new ServerResponse(200, "User created successfully!!!", userId);
         }
@@ -62,5 +66,9 @@ public class UsersController {
         return new ServerResponse(200, "User credentials generated successfully!");
     }
     
-    
+    public String getDate() {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
+        LocalDateTime now = LocalDateTime.now();
+        return format.format(now);
+    }
 }

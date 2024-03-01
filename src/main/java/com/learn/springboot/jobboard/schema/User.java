@@ -16,6 +16,8 @@ public class User {
     private String email;
     @Field("accountType")
     private String accountType;
+    @Field("createdAt")
+    private String createdAt;
     public String getId() {
         return id;
     }
@@ -46,9 +48,15 @@ public class User {
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
+    public String getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
     @Override
     public String toString() {
-        return "User [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
-                + ", accountType=" + accountType + "]";
+        return "User{id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", email=" + email
+                + ", accountType=" + accountType + ", createdAt=" + createdAt + "}";
     }
 }
