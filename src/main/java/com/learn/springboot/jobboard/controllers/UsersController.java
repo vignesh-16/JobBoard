@@ -2,17 +2,22 @@ package com.learn.springboot.jobboard.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.learn.springboot.jobboard.params.AccountDetails;
 import com.learn.springboot.jobboard.params.ServerResponse;
+import com.learn.springboot.jobboard.repository.UserAccountHistoryRepo;
 import com.learn.springboot.jobboard.repository.UserAuthenticateRepo;
 import com.learn.springboot.jobboard.repository.UserRepo;
 import com.learn.springboot.jobboard.schema.User;
+import com.learn.springboot.jobboard.schema.UserAccountHistory;
 import com.learn.springboot.jobboard.schema.UserAuthenticate;
 import com.learn.springboot.jobboard.services.IdGeneratorService;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.logging.Logger;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +36,9 @@ public class UsersController {
 
     @Autowired
     IdGeneratorService createUserId;
+
+    @Autowired
+    UserAccountHistoryRepo logsRepo;
     
     @PostMapping("/createuser")
     public void createUserAndCredentials(@RequestBody User newUser, @RequestBody UserAuthenticate userCreds) {
@@ -54,7 +62,13 @@ public class UsersController {
             newUser.setId(userId);
             newUser.setCreatedAt(date);
             repo.save(newUser);
-            return new ServerResponse(200, "User created successfully!!!", userId);
+            boolean logCreated = saveLogs(newUser);
+            logger.info("Logs for new user created ? "+logCreated);
+            if (logCreated){
+                return new ServerResponse(200, "User created successfully!!!", userId);
+            } else {
+                return new ServerResponse(500, "Could not create user logs");
+            }
         }
     }
 
@@ -63,12 +77,26 @@ public class UsersController {
         String credsId = createUserId.generateUniqueId();
         userCreds.setId(credsId);
         credsRepo.save(userCreds);
-        return new ServerResponse(200, "User credentials generated successfully!");
+        return new ServerResponse(200, "User credentials saved successfully!");
     }
     
     public String getDate() {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");  
         LocalDateTime now = LocalDateTime.now();
         return format.format(now);
+    }
+
+    public boolean saveLogs(User user) {
+        UserAccountHistory newUserLog = new UserAccountHistory();
+        newUserLog.setId(createUserId.generateUniqueId());
+        newUserLog.setForUserId(user.getId());
+        AccountDetails userAccountDetails = new AccountDetails();
+        userAccountDetails.setModifiedAt(getDate());
+        userAccountDetails.setLog(user);
+        userAccountDetails.setLogType("Account creation");
+        userAccountDetails.setModifiedField("NA");
+        newUserLog.setLogs(userAccountDetails);
+        newUserLog = logsRepo.save(newUserLog);
+        return !ObjectUtils.isEmpty(newUserLog);
     }
 }

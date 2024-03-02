@@ -7,7 +7,9 @@ public class AccountDetails {
 
     private User log;
 
-    private String modified;
+    private String modifiedField;
+
+    private String logType;
 
     public String getModifiedAt() {
         return modifiedAt;
@@ -25,16 +27,26 @@ public class AccountDetails {
         this.log = log;
     }
 
-    public String getModified() {
-        return modified;
+    public String getModifiedField() {
+        return modifiedField;
     }
 
-    public void setModified(String modified) {
-        this.modified = modified;
+    public void setModifiedField(String modifiedField) {
+        this.modifiedField = modifiedField;
+    }
+
+    public String getLogType() {
+        return logType;
+    }
+
+    public void setLogType(String logType) {
+        this.logType = logType;
     }
 
     @Override
     public String toString() {
-        return "AccountDetails [modifiedAt=" + modifiedAt + ", log=" + log.toString() + ", modified=" + modified + "]";
+        return "AccountDetails [modifiedAt=" + modifiedAt + ", log=" + log.toString() + ", modifiedField=" + modifiedField
+                + ", logType=" + logType + "]";
     }
+
 }

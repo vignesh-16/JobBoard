@@ -1,3 +1,6 @@
+//To Do: 
+// -> handle 'Remember Me' option while sign in.
+
 $(window).on('beforeunload', function() {
     $.ajax({
         url: '/TerminateSession',
@@ -52,7 +55,6 @@ function requestPage (requestTo, method, body, purpose) {
         headers : { 'Content-Type' : 'application/json' },
         body : JSON.stringify(body)
     }
-    const task = purpose != null || undefined ? purpose : `${method} call :`;
     fetch(endPoint, options)
         .then(response => {
             if(response.ok) {
@@ -67,14 +69,10 @@ function requestPage (requestTo, method, body, purpose) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    
-    const signInSection = document.getElementsByClassName("log-in-section")[0];
-    const signUpSection = document.getElementsByClassName("sign-up-section")[0];
+
     const signInButton = document.getElementsByClassName("js-log-in")[0];
     const signUpButton = document.getElementsByClassName("js-sign-up")[0];
-    const createNewAccount = document.getElementsByClassName("js-create-account")[0];
    
-
     signInButton.addEventListener("click", function() {
         let userId = document.getElementsByName("userid")[0].value
         let userPwd = document.getElementsByName("userpass")[0].value
@@ -86,34 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     signUpButton.addEventListener("click", ()=> {
-        signInSection.classList.add("disabled");
-        signUpSection.classList.remove("disabled");
-    })
-
-    createNewAccount.addEventListener("click", ()=> {
-        let firstname = document.getElementsByName("fname")[0].value;
-        let lastname = document.getElementsByName("lname")[0].value;
-        let email = document.getElementsByName("mail")[0].value;
-        let accountType = document.getElementsByName("account-type")[0].value;
-        let password = document.getElementsByName("password2")[0].value;
-        let newUser = { id: "", firstname : firstname, lastname : lastname, email : email, accountType : accountType };
-        let userCreds = { id: "", userId: "", userLogin : email, password : password, accountType : accountType };
-        
-        let response = requestToEndPoint("/CreateUser", "POST", newUser, "Create a new user")
-        
-        if(response?.result?.statusCode == 200) {
-            userCreds.userId = response?.result?.data
-            let response2 = requestToEndPoint("SaveUserCredentials", 'POST', userCreds, "Generate user credentials to login")
-            if (response2?.result.statusCode == 200 ) {
-                alert (`Your user account was created successfully!, please log in.`)
-                signInSection.classList.remove("disabled");
-                signUpSection.classList.add("disabled");
-            } else {
-                alert (`Something went wrong`)
-            }
-        } else {
-            alert(`Something went wrong`)
-        }
+        window.location.href = "/signup";
     })
 
 });

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
+
 @RestController
 public class HomeController {
 
@@ -51,4 +52,9 @@ public class HomeController {
         return new ModelAndView("home");
     }
     
+    @GetMapping("/signup")
+    public ModelAndView signUp(@RequestParam(required = false) String param) {
+        return new ModelAndView("signup");
+    }
+
 }
