@@ -92,7 +92,7 @@
     height: 30px;
     border-top-left-radius: 50%;
     background: transparent;
-    box-shadow: -15px 0 0 0 var(--primary-color); /* Removed space before --primary-color */
+    box-shadow: -15px 0 0 0 var(--primary-color);
   }
   
   .input_box {
@@ -120,23 +120,14 @@
   
   .label {
     position: absolute;
-    top: 15px;
-    left: 20px;
-    transition: 0.2s;
-  }
-  
-  .input-field:focus ~ .label,
-  .input-field:valid .label {
-    /* Added missing closing brace here */
-    position: absolute;
-    top: -10px;
+    top: -20px;
     left: 20px;
     font-size: 14px;
     background-color: var(--primary-color);
     border-radius: 30px;
     color: var(--black-color);
     padding: 0 10px;
-  } /* Closed the missing brace */
+  }
   
   .icon {
     position: absolute;
@@ -178,6 +169,49 @@
   .disabled {
     display: none;
   }
+
+  .custom-select {
+    /* ... */
+    position: relative;
+  }
+
+  select {
+    appearance: none;
+    /* safari */
+    -webkit-appearance: none;
+    /* other styles for aesthetics */
+    width: 100%;
+    font-size: 1.15rem;
+    padding: 0.675em 6em 0.675em 1em;
+    background-color: #fff;
+    border: 1px solid #caced1;
+    border-radius: 0.25rem;
+    color: #000;
+    cursor: pointer;
+  }
+
+.custom-select::before,
+.custom-select::after {
+  --size: 0.3rem;
+  position: absolute;
+  content: "";
+  right: 1rem;
+  pointer-events: none;
+}
+
+.custom-select::before {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-bottom: var(--size) solid black;
+  top: 60%;
+}
+
+.custom-select::after {
+  border-left: var(--size) solid transparent;
+  border-right: var(--size) solid transparent;
+  border-top: var(--size) solid black;
+  top: 69%;
+}
 
   .sign-up-box {
     position: relative;

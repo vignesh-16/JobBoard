@@ -13,40 +13,39 @@
         <script src="../JS/signup.js"></script>
     </head>
     <body>
-        <div class="landing-page-container"> 
+        <div class="wrapper landing-page-container"> 
             <!-- Sign up section starts here... -->
             <div class="sign-up-section sign-up-box">
-                <div class="new-user-firstname space">
+                <div class="input_box new-user-firstname space">
                     <label>First name:</label>
-                    <input type="text" name="fname" placeholder="enter first name">
+                    <input class="input-field" type="text" name="fname" placeholder="enter first name">
                 </div>
-                <div class="new-user-lastname space">
+                <div class="input_box new-user-lastname space">
                     <label>Last name:</label>
-                    <input type="text" name="lname" placeholder="enter last/family name">
+                    <input class="input-field" type="text" name="lname" placeholder="enter last/family name">
                 </div>
-                <div class="new-user-email space">
+                <div class="input_box new-user-email space">
                     <label>Email address:</label> 
-                    <input type="email" name="mail" placeholder="your email address">
+                    <input class="input-field" type="email" name="mail" placeholder="your email address">
                 </div>
-                <div class="user-account-type space">
+                <div class="input_box custom-select user-account-type space">
                     <label>Account type:</label> 
                     <select name="account-type">
-                        <optgroup label="Select your account type">
-                            <option value="recruiter">Recruiter</option>
-                            <option value="candidate">Candidate</option>
-                        </optgroup>
+                        <option value="">Account type</option>
+                        <option value="candidate"><label class="label">Candidate</label></option>
+                        <option value="recruiter"><label class="label">Recruiter</label></option>
                     </select>
                 </div>
-                <div class="new-user-password pass-one space">
+                <div class="input_box new-user-password pass-one space">
                     <label>Choose a password:</label>
-                    <input type="password" name="password1" placeholder="choose a password">
+                    <input class="input-field" type="password" name="password1" placeholder="choose a password">
                 </div>
-                <div class="new-user-password pass-two space">
+                <div class="input_box new-user-password pass-two space">
                     <label>Confirm password:</label>
-                    <input type="password" name="password2" placeholder="confirm your password">
+                    <input class="input-field" type="password" name="password2" placeholder="confirm your password">
                 </div>
-                <div class="create-new-user space">
-                    <button class="js-create-account">Create Account</button>
+                <div class="input_box create-new-user space">
+                    <button class="input-submit js-create-account">Create Account</button>
                 </div>
             </div>
         </div>
