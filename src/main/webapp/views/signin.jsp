@@ -10,7 +10,7 @@
         <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
         <link rel="stylesheet" href="../styles/siginin.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="../JS/signin.js"></script>
+        <script src="../js/signin.js"></script>
     </head>
     <body>
         <div class="landing-page-container">

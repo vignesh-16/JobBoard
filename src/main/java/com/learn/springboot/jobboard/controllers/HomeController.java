@@ -57,4 +57,9 @@ public class HomeController {
         return new ModelAndView("signup");
     }
 
+    @GetMapping("/profile")
+    public ModelAndView getProfile(@RequestParam String param) {
+        return new ModelAndView("profile");
+    }
+    
 }
