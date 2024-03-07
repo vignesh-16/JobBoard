@@ -4,7 +4,7 @@
  * @param {Object} body takes the parameter object required. 
  * @param {String} purpose (Optional) a brief message indicating what needs to achieved by the request.
  */
-export async function requestToEndPoint (requestTo, method, body, purpose) {
+async function requestToEndPoint (requestTo, method, body, purpose) {
     const endPoint = requestTo;
     const options = {
         method : method,
@@ -27,7 +27,7 @@ export async function requestToEndPoint (requestTo, method, body, purpose) {
     return serverResponse;   
 }
 
-export async function requestPage (requestTo, method, body, purpose) {
+async function requestPage (requestTo, method, body, purpose) {
     const endPoint = requestTo;
     const options = {
         method : method,

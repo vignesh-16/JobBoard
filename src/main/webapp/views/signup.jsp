@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="../styles/siginin.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../js/signup.js"></script>
+        <script src="../js/utility.js"></script>
     </head>
     <body>
         <div class="wrapper landing-page-container"> 

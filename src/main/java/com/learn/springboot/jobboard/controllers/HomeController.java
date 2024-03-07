@@ -58,7 +58,7 @@ public class HomeController {
     }
 
     @GetMapping("/profile")
-    public ModelAndView getProfile(@RequestParam String param) {
+    public ModelAndView getProfile(@RequestParam(required = false) String param) {
         return new ModelAndView("profile");
     }
     

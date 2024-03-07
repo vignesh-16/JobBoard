@@ -1,5 +1,3 @@
-import * as utils from '../js/utility';
-
 $(window).on('beforeunload', function() {
     $.ajax({
         url: '/TerminateSession',

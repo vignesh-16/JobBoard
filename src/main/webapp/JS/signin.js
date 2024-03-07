@@ -1,4 +1,3 @@
-import * as utils from '../js/utility';
 //To Do: 
 // -> handle 'Remember Me' option while sign in.
 
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
             username: userId,
             password: userPwd
         }
-        utils.requestPage("/signin", "POST", data, "Check user credentials")
+        requestPage("/signin", "POST", data, "Check user credentials")
     });
 
     signUpButton.addEventListener("click", ()=> {

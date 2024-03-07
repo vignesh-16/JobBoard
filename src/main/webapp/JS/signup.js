@@ -1,4 +1,3 @@
-import * as utils from '../js/utility';
 //To Do: 
 // -> Validation of email & password when signing up.
 
@@ -28,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let newUser = { id: "", firstname : firstname, lastname : lastname, email : email, accountType : accountType };
         let userCreds = { id: "", userId: "", userLogin : email, password : password, accountType : accountType };
         
-        let response = await utils.requestToEndPoint("/CreateUser", "POST", newUser, "Create a new user")
+        let response = await requestToEndPoint("/CreateUser", "POST", newUser, "Create a new user")
         
         if(response?.result?.statusCode == 200) {
             userCreds.userId = response?.result?.data
