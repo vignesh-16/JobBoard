@@ -6,6 +6,7 @@
   }
   body {
     background-color: #025bee;
+    display: flex;
   }
   .container {
     background-color: #ffffff;
