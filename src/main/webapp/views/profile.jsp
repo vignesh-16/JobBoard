@@ -19,12 +19,12 @@
     <link rel="stylesheet" href="../styles/profileview.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Script -->
-    <!-- <script src="../js/home.js"></script> -->
+    <script src="../js/profile.js"></script>
     <script src="../js/utility.js"></script>
 </head>
 <body>
     <div class="container">
-      <input type="file" id="file-input"/>
+      <input type="file" class="js-file-input" id="file-input"/>
         <label for="file-input">
             <i class="fa-solid fa-arrow-up-from-bracket"></i>
             Upload resume
