@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const fileInput = document.getElementsByClassName("js-file-input")[0];
     fileInput.addEventListener('input',()=>{
         console.log(`Hey!! file received!!!`)
-        let file = fileInput.value;
+        let file = fileInput.files[0];
         mediaRequestToEndPoint("uploadResume", "POST", file, "storeInDb")
     })
 });

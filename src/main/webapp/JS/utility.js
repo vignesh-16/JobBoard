@@ -30,15 +30,16 @@ async function requestToEndPoint (requestTo, method, body, purpose) {
 /**
  * @param {String} requestTo takes the end point which the request should be made.
  * @param {String} method takes the method type 'POST', 'GET', etc.,
- * @param {Object} body takes the parameter object required. 
+ * @param {File} body takes the parameter File required. 
  * @param {String} purpose (Optional) a brief message indicating what needs to achieved by the request.
  */
-async function mediaRequestToEndPoint (requestTo, method, body, purpose) {
+async function mediaRequestToEndPoint(requestTo, method, body, purpose) {
     const endPoint = requestTo;
+    const formData = new FormData();
+    formData.append('file', body); // 'file' should match the name of the parameter expected by the server
     const options = {
-        method : method,
-        headers : { 'Content-Type' : 'multipart/form-data' },
-        body : JSON.stringify(body)
+        method: method,
+        body: formData
     }
     const task = purpose != null || undefined ? purpose : `${method} call :`;
     let serverResponse = {};
@@ -53,7 +54,7 @@ async function mediaRequestToEndPoint (requestTo, method, body, purpose) {
     } catch (err) {
         console.error(` >> Not able to execute ${task} -> ${err}`);
     }
-    return serverResponse;   
+    return serverResponse;
 }
 
 async function requestPage (requestTo, method, body, purpose) {
