@@ -27,7 +27,7 @@
       <input type="file" class="js-file-input" id="file-input"/>
         <label for="file-input">
             <i class="fa-solid fa-arrow-up-from-bracket"></i>
-            Upload resume
+            Select a file
         </label>
       <div id="num-of-files">No Files Choosen</div>
       <ul id="files-list"></ul>
