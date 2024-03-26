@@ -12,6 +12,9 @@
 </head>
 <body>
     <p>Home page!</p>
-    <nav><span id="js-my-profile">My profile</span></nav>
+    <nav>
+        <span id="js-my-profile">My profile</span>
+        <span id="js-settings">Settings</span>
+    </nav>
 </body>
 </html>

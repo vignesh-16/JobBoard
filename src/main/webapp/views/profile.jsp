@@ -21,6 +21,7 @@
     <!-- Script -->
     <script src="../js/profile.js"></script>
     <script src="../js/utility.js"></script>
+    <script src="../common/notifications.js"></script>
 </head>
 <body>
     <div class="container">
