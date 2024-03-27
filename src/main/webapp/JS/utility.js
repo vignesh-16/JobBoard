@@ -76,3 +76,10 @@ async function requestPage (requestTo, method, body, purpose) {
             window.location.href = loadPage;
         })
 }
+
+const successMessage = `<div id="notification-container" class="hidden">
+                            <div id="notification" class="notification">
+                                <span id="notification-message"></span>
+                                <button id="close-btn" class="close-btn" onclick="closeNotification()">x</button>
+                            </div>
+                        </div>`
