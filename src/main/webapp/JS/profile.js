@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
         } else {
             alert(`File ${fileName} with size ${fileSize} KB is added`)
             filesCount.classList.add('hidden');
-            showNotification("Success")
+            ShowSuccessNotification('Success !')
             fileInput.labels[0].innerText.replace("Select a file", "Upload resume")
         }
         

@@ -79,7 +79,18 @@ async function requestPage (requestTo, method, body, purpose) {
 
 const successMessage = `<div id="notification-container" class="hidden">
                             <div id="notification" class="notification">
-                                <span id="notification-message"></span>
                                 <button id="close-btn" class="close-btn" onclick="closeNotification()">x</button>
                             </div>
                         </div>`
+
+const ShowSuccessNotification = (message)=> {
+    let dom =  document.getElementById('toasters');
+    dom.innerHTML = successMessage;
+    let container = document.getElementById('notification-container');
+    let notificationarea = document.getElementById('notification');
+    let notificationMessage = `<span id="notification-message">${message}</span>`
+    notificationarea.appendChild(notificationMessage);
+    container.classList.add('show')
+    container.classList.remove('hidden')
+    //setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}

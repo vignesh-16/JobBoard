@@ -17,6 +17,7 @@
     />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../styles/profileview.css" />
+    <link rel="stylesheet" href="../styles/commons.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Script -->
     <script src="../js/profile.js"></script>
@@ -33,5 +34,6 @@
       <div id="num-of-files">No Files Choosen</div>
       <ul id="files-list"></ul>
     </div>
+    <div id="toasters"></div>
 </body>
 </html>
