@@ -78,9 +78,14 @@
     /* Show the snackbar */
     /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
     However, delay the fade out process for 3.0 seconds */
-    -webkit-animation: fadein 0.5s, fadeout 0.5s 3.0s;
-    animation: fadein 0.5s, fadeout 0.5s 3.0s;
-  }
+  -webkit-animation: fadein 0.5s;
+  animation: fadein 0.5s;
+}
+
+#notification.hide {
+  -webkit-animation: fadeout 0.5s 3.0s;
+  animation: fadeout 0.5s 3.0s;
+}
   
   /* Animations to fade the snackbar in and out */
   @-webkit-keyframes fadein {

@@ -34,6 +34,6 @@
       <div id="num-of-files">No Files Choosen</div>
       <ul id="files-list"></ul>
     </div>
-    <div id="toasters"></div>
+    <div id="toasters" data-position="top"></div>
 </body>
 </html>

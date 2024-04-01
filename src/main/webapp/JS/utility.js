@@ -78,23 +78,23 @@ async function requestPage (requestTo, method, body, purpose) {
 }
 
 const successMessage = `<div id="notification-container" class="hidden">
-                            <div id="notification" class="notification-up">
+                            <div id="notification" class="notification-up hide">
                                 <span id="notification-message"></span>
                                 <button id="close-btn" data-title='close notification' class="close" onclick="closeNotification()"></button>
                             </div>
                         </div>`
 
 const ShowSuccessNotification = (message)=> {
-    let dom =  document.getElementById('toasters');
+    let dom = document.getElementById('toasters');
     dom.innerHTML = successMessage;
     let container = document.getElementById('notification-container');
     let popup = document.getElementsByClassName('notification-up')[0];
     let notificationMessage = document.getElementById('notification-message');
     notificationMessage.innerText = message || "Default success!";
-    popup.classList.add('show')
+    popup.className.replace('hide', 'show')
     container.classList.remove('hidden')
     setTimeout(() => { 
-        popup.classList.remove("show"); 
+        popup.className.replace('show', 'hide')
         container.classList.add('hidden'); 
     }, 3000);
 }
