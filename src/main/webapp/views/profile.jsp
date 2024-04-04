@@ -17,12 +17,11 @@
     />
     <!-- Stylesheet -->
     <link rel="stylesheet" href="../styles/profileview.css" />
-    <link rel="stylesheet" href="../styles/commons.css">
+    <link rel="stylesheet" href="../styles/commonStyles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Script -->
-    <script src="../js/profile.js"></script>
+    <script src="../js/profile.js" type="module"></script>
     <script src="../js/utility.js"></script>
-    <script src="../common/notifications.js"></script>
 </head>
 <body>
     <div class="container">

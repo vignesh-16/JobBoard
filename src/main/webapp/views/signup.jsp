@@ -9,6 +9,7 @@
         <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
         <link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap'>
         <link rel="stylesheet" href="../styles/siginin.css">
+        <link rel="stylesheet" href="../styles/commonStyles.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../js/signup.js"></script>
         <script src="../js/utility.js"></script>

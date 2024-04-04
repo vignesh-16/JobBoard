@@ -1,3 +1,5 @@
+import Toast from "../common/toasters.js";
+
 $(window).on('beforeunload', function() {
     $.ajax({
         url: '/TerminateSession',
@@ -14,8 +16,6 @@ $(window).on('beforeunload', function() {
 
 document.addEventListener("DOMContentLoaded", function() {
     const fileInput = document.getElementsByClassName("js-file-input")[0];
-    const filesCount = document.getElementById("num-of-files");
-    const fileDetails = document.getElementById("files-list");
 
     const getPropertyFromFileObject = function(fileObject, property) {
         let fullText, fileInfo;
@@ -44,11 +44,22 @@ document.addEventListener("DOMContentLoaded", function() {
         fileName = getPropertyFromFileObject(file, "name");
         console.log(`Hey Js received this file: ${file.name}`)
         if (fileType !== 'pdf') {
-            alert(`Please select a PDF file to upload you have selected ${fileType}`);
+            let notification = new Toast ({
+                text : `Please select a PDF file to upload you have selected ${fileType}`,
+                position: "top-right",
+                pauseOnHover: true,
+                pauseOnFocusLoss: true
+            })
+            console.info(`notification ${JSON.stringify(notification)}`)
+            alert();
         } else {
-            alert(`File ${fileName} with size ${fileSize} KB is added`)
-            filesCount.classList.add('hidden');
-            ShowSuccessNotification('Success !')
+            let notification = new Toast ({
+                text : `File '${fileName}' uploaded successfully!`,
+                position: "top-right",
+                pauseOnHover: true,
+                pauseOnFocusLoss: true
+            })
+            console.info(`notification ${JSON.stringify(notification)}`)
             fileInput.labels[0].innerText.replace("Select a file", "Upload resume")
         }
         
