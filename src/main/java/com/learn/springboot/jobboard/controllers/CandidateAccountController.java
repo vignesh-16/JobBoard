@@ -2,6 +2,7 @@ package com.learn.springboot.jobboard.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +11,8 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.GetMapping;
+
 
 
 @RestController
@@ -41,4 +44,8 @@ public class CandidateAccountController {
         }
     }
     
+    @GetMapping("/joblisting")
+    public ModelAndView getMethodName(@RequestParam(required = false) String param) {
+        return new ModelAndView("joblistings");
+    }
 }
