@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    height: 100vh;
+    width: 100vb;
+    justify-content: center;
+    align-items: center;
+}
+
+.jobs-list-container {
+    display: grid;
+}
+
+.job-post-container {
+    min-width: 250px;
+    height: max-content;
+    border: 1px solid cadetblue;
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    margin: 1em;
+}
+
+.job-title-options-container {
+    display: flex;
+}
+
+.job-poster-details-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.salary-jobtype-container {
+    display: flex;
+}
+
+.apply-mode-container {
+    width: max-content;
+}
+
+.job-description-container {
+    width: max-content;
+}

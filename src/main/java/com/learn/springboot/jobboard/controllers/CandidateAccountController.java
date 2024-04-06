@@ -46,6 +46,6 @@ public class CandidateAccountController {
     
     @GetMapping("/joblisting")
     public ModelAndView getMethodName(@RequestParam(required = false) String param) {
-        return new ModelAndView("joblistings");
+        return new ModelAndView("/jobposts/joblistings");
     }
 }
