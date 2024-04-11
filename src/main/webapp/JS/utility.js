@@ -3,13 +3,23 @@
  * @param {String} method takes the method type 'POST', 'GET', etc.,
  * @param {Object} body takes the parameter object required. 
  * @param {String} purpose (Optional) a brief message indicating what needs to achieved by the request.
+ * @param {boolean} expectingPOJO true if server is expecting a POJO as request body.
  */
-async function requestToEndPoint (requestTo, method, body, purpose) {
+async function requestToEndPoint (requestTo, method, body, purpose, expectingPOJO) {
     const endPoint = requestTo;
-    const options = {
-        method : method,
-        headers : { 'Content-Type' : 'application/json' },
-        body : JSON.stringify(body)
+    let options = {}
+    if (! expectingPOJO ) {
+        options = {
+            method : method,
+            headers : { 'Content-Type' : 'application/json' },
+            body : JSON.stringify(body)
+        }
+    } else {
+        options = {
+            method : method,
+            headers : { 'Content-Type' : 'application/json' },
+            body : body
+        }
     }
     const task = purpose != null || undefined ? purpose : `${method} call :`;
     let serverResponse = {};

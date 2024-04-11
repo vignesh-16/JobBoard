@@ -40,3 +40,9 @@ body {
 .job-description-container {
     width: max-content;
 }
+
+.post-create-container form {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}

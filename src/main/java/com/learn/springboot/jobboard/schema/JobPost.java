@@ -30,6 +30,9 @@ public class JobPost {
     @Field("description")
     private String description;
 
+    @Field("dateposted")
+    private String dateposted;
+
     public String getId() {
         return id;
     }
@@ -94,10 +97,18 @@ public class JobPost {
         this.description = description;
     }
 
+    public String getDateposted() {
+        return dateposted;
+    }
+
+    public void setDateposted(String dateposted) {
+        this.dateposted = dateposted;
+    }
+
     @Override
     public String toString() {
         return "JobPost [id=" + id + ", jobTitle=" + jobTitle + ", advertiser=" + advertiser + ", location=" + location
                 + ", salary=" + salary + ", jobType=" + jobType + ", mode=" + mode + ", description=" + description
-                + "]";
+                + ", dateposted=" + dateposted + "]";
     }
 }

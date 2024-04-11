@@ -7,6 +7,7 @@
     <title>Job Results</title>
     <link rel="stylesheet" href="../../styles/jobshome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../../js/utility.js"></script>
 </head>
 <body>
     <section class="jobs-list-container">
@@ -32,6 +33,9 @@
                         Job description points
                     </li>
                 </ul>
+            </div>
+            <div class="date-posted-container">
+                <span class="label">Date posted:</span>
             </div>
         </div>
     </section>
