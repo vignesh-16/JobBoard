@@ -15,8 +15,14 @@ public class JobPost {
     @Field("advertiser")
     private String advertiser;
 
+    @Field("aboutadvertiser")
+    private String aboutadvertiser;
+
     @Field("location")
     private String location;
+
+    @Field("jobrequirements")
+    private String jobrequirements;
 
     @Field("salary")
     private String salary;
@@ -29,6 +35,9 @@ public class JobPost {
 
     @Field("description")
     private String description;
+
+    @Field("field")
+    private String field;
 
     @Field("dateposted")
     private String dateposted;
@@ -57,12 +66,28 @@ public class JobPost {
         this.advertiser = advertiser;
     }
 
+    public String getAboutadvertiser() {
+        return aboutadvertiser;
+    }
+
+    public void setAboutadvertiser(String aboutadvertiser) {
+        this.aboutadvertiser = aboutadvertiser;
+    }
+
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getJobrequirements() {
+        return jobrequirements;
+    }
+
+    public void setJobrequirements(String jobrequirements) {
+        this.jobrequirements = jobrequirements;
     }
 
     public String getSalary() {
@@ -97,6 +122,14 @@ public class JobPost {
         this.description = description;
     }
 
+    public String getField() {
+        return field;
+    }
+
+    public void setField(String field) {
+        this.field = field;
+    }
+
     public String getDateposted() {
         return dateposted;
     }
@@ -107,8 +140,10 @@ public class JobPost {
 
     @Override
     public String toString() {
-        return "JobPost [id=" + id + ", jobTitle=" + jobTitle + ", advertiser=" + advertiser + ", location=" + location
-                + ", salary=" + salary + ", jobType=" + jobType + ", mode=" + mode + ", description=" + description
-                + ", dateposted=" + dateposted + "]";
+        return "{id=" + id + ", jobTitle=" + jobTitle + ", advertiser=" + advertiser + ", aboutadvertiser="
+                + aboutadvertiser + ", location=" + location + ", jobrequirements=" + jobrequirements + ", salary="
+                + salary + ", jobType=" + jobType + ", mode=" + mode + ", description=" + description + ", field="
+                + field + ", dateposted=" + dateposted + "}";
     }
+
 }

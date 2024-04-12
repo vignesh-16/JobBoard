@@ -108,3 +108,21 @@ const ShowSuccessNotification = (message)=> {
         container.classList.add('hidden'); 
     }, 3000);
 }
+
+const getCurrentDate = ()=> {
+    // Create a new Date object
+    let currentDate = new Date();
+
+    // Get the current date and time components
+    let year = currentDate.getFullYear();
+    let month = (currentDate.getMonth() + 1).toString().padStart(2, '0'); // Month is zero-based, so add 1
+    let day = currentDate.getDate().toString().padStart(2, '0');
+    let hours = currentDate.getHours().toString().padStart(2, '0');
+    let minutes = currentDate.getMinutes().toString().padStart(2, '0');
+    let seconds = currentDate.getSeconds().toString().padStart(2, '0');
+
+    // Construct the string representation of the current date and time
+    let currentDateTime = year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds;
+
+    return currentDateTime
+}

@@ -16,8 +16,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
     document.getElementById("jobcreater").addEventListener("submit", (e)=>{
         e.preventDefault();
         const formData = new FormData(e.target);
-        const formProps = Object.fromEntries(formData);
-        console.log(`>> form : ${JSON.stringify(formProps)}`)
+        let formProps = Object.fromEntries(formData);
+        formProps.dateposted = getCurrentDate()
         requestToEndPoint("/createJobPost", "POST", JobPost = JSON.stringify(formProps), "Create new job post", true)
     })
 });

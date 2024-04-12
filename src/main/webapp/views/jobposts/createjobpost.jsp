@@ -13,8 +13,8 @@
 <body>
     <div class="post-create-container">
         <form id="jobcreater">
-            <label for="tile">Job title: </label>
-            <input type="text" id="title" name="title">
+            <label for="jobTitle">Job title: </label>
+            <input type="text" id="title" name="jobTitle">
             <!-- TO DO : Company name should be automatically fetched from user details -->
             <label for="advertiser">Company name:</label>
             <input type="text" id="advertiser" name="advertiser">
@@ -27,6 +27,9 @@
 
             <label for="job-type">Job type:</label>
             <input type="text" id="job-type" name="job-type">
+
+            <label for="jobrequirements">Requirements:</label>
+            <textarea id="job-requirements" name="jobrequirements"></textarea>
 
             <label for="apply-mode">Apply mode:</label>
             <input type="text" id="apply-mode" name="apply-mode">
